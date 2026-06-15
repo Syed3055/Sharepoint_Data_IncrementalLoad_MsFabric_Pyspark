@@ -1,0 +1,109 @@
+table Sales_dt
+	lineageTag: 78e42947-9d71-4202-95b2-1adcb7649099
+
+	column sales_id
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 82a6259a-53e1-4442-8ba3-79a6260286e6
+		summarizeBy: none
+		sourceColumn: sales_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: a5eded73-ba0f-49e5-a05f-eaa37d79a22e
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_id
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 144fc137-c5f8-4840-bf8f-f8a8faa81f70
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column region_id
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: dcfaca4f-fc9c-4fd4-8f63-d3e31d35b2b3
+		summarizeBy: none
+		sourceColumn: region_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column quantity
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 70377487-d819-4a04-bf78-d3380165925d
+		summarizeBy: sum
+		sourceColumn: quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_amount
+		dataType: double
+		sourceProviderType: float
+		lineageTag: d1c9ccd6-0cb5-482b-8bd2-442b10231d32
+		summarizeBy: sum
+		sourceColumn: total_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column sales_timestamp
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 83149bc8-3183-4ba2-97b3-03cc15362561
+		summarizeBy: none
+		sourceColumn: sales_timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column __filepath__
+		dataType: string
+		sourceProviderType: varchar(2048)
+		lineageTag: 0b1b3a66-9609-432b-ab94-9569cc46f885
+		summarizeBy: none
+		sourceColumn: __filepath__
+
+		annotation SummarizationSetBy = Automatic
+
+	column __corrupt__
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 6dcf5306-a315-4d61-bb4c-a02fff3c4d45
+		summarizeBy: none
+		sourceColumn: __corrupt__
+
+		annotation SummarizationSetBy = Automatic
+
+	column __ingestion_timestamp__
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 6b23d6f2-ab25-40d0-be6a-c2dc353a9dcd
+		summarizeBy: none
+		sourceColumn: __ingestion_timestamp__
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Sales_dt = m
+		mode: directQuery
+		source =
+				let
+				    Source = Sql.Database("s4upbqk4pime5ebsio5r7pkbu4-avhwcnkbinxufn2mjf3xa5mnly.datawarehouse.fabric.microsoft.com", "Project_LH"),
+				    dbo_Sales_dt = Source{[Schema="dbo",Item="Sales_dt"]}[Data]
+				in
+				    dbo_Sales_dt
+
+	annotation PBI_ResultType = Table
+

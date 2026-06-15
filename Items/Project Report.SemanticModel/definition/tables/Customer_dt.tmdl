@@ -1,0 +1,88 @@
+table Customer_dt
+	lineageTag: 43b6c68c-de5b-40e7-b8f9-146f120e822f
+
+	column customer_id
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: d911caef-a4b4-47ff-beab-4168f136e30f
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_name
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: fa12c474-2b10-4a5f-993d-636deb716ecf
+		summarizeBy: none
+		sourceColumn: customer_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column email
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: e9b4fb7a-8be7-4e47-a157-3855a8df5e53
+		summarizeBy: none
+		sourceColumn: email
+
+		annotation SummarizationSetBy = Automatic
+
+	column region_id
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: b23b0dac-fcc4-4662-a8a1-196fcb69c84f
+		summarizeBy: none
+		sourceColumn: region_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_timestamp
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 46219a46-13f5-4602-bcb9-24e3192c05a0
+		summarizeBy: none
+		sourceColumn: created_timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column __filepath__
+		dataType: string
+		sourceProviderType: varchar(2048)
+		lineageTag: f43e84c8-6b9e-488b-94e9-5262047b0418
+		summarizeBy: none
+		sourceColumn: __filepath__
+
+		annotation SummarizationSetBy = Automatic
+
+	column __corrupt__
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: af89a036-7446-45d2-8528-63222059aa45
+		summarizeBy: none
+		sourceColumn: __corrupt__
+
+		annotation SummarizationSetBy = Automatic
+
+	column __ingestion_timestamp__
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 4776679f-45dd-48ed-9385-64017a8c0b12
+		summarizeBy: none
+		sourceColumn: __ingestion_timestamp__
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Customer_dt = m
+		mode: directQuery
+		source =
+				let
+				    Source = Sql.Database("s4upbqk4pime5ebsio5r7pkbu4-avhwcnkbinxufn2mjf3xa5mnly.datawarehouse.fabric.microsoft.com", "Project_LH"),
+				    dbo_Customer_dt = Source{[Schema="dbo",Item="Customer_dt"]}[Data]
+				in
+				    dbo_Customer_dt
+
+	annotation PBI_ResultType = Table
+
