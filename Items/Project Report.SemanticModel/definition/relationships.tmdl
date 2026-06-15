@@ -1,0 +1,15 @@
+relationship 17f18a01-bde8-b244-224f-f4009ad915c3
+	crossFilteringBehavior: bothDirections
+	fromColumn: Customer_dt.customer_id
+	toColumn: Sales_dt.customer_id
+
+relationship 10f4804f-4366-99c2-6689-d07908a3e20e
+	crossFilteringBehavior: bothDirections
+	fromColumn: Product_dt.product_id
+	toColumn: Sales_dt.product_id
+
+relationship f58a13f5-6767-efce-05ea-f86d29f22315
+	crossFilteringBehavior: bothDirections
+	fromColumn: Regon_dt.region_id
+	toColumn: Sales_dt.region_id
+

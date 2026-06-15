@@ -1,0 +1,79 @@
+table Regon_dt
+	lineageTag: 4bd938b7-61d5-40c0-8629-10ea75a83bd4
+
+	column region_id
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 0ded21f4-f4e9-45ed-9ddb-6050f1be4710
+		summarizeBy: none
+		sourceColumn: region_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column region_name
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: f9d002a2-7c6c-437e-9ead-7c4a2aa6f981
+		summarizeBy: none
+		sourceColumn: region_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 5353d4c0-d965-436a-9d85-e9a5ec064f0c
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_timestamp
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: a76eed9b-c1ca-48c0-8fd2-52fa58fefb51
+		summarizeBy: none
+		sourceColumn: created_timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column __filepath__
+		dataType: string
+		sourceProviderType: varchar(2048)
+		lineageTag: 8c820deb-44c6-4157-8b58-de32f4f70e18
+		summarizeBy: none
+		sourceColumn: __filepath__
+
+		annotation SummarizationSetBy = Automatic
+
+	column __corrupt__
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: e4e76fb7-be02-4404-bbeb-3e66b77be493
+		summarizeBy: none
+		sourceColumn: __corrupt__
+
+		annotation SummarizationSetBy = Automatic
+
+	column __ingestion_timestamp__
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: f5c8b634-380d-4735-9339-36f3d1f75e4b
+		summarizeBy: none
+		sourceColumn: __ingestion_timestamp__
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Regon_dt = m
+		mode: directQuery
+		source =
+				let
+				    Source = Sql.Database("s4upbqk4pime5ebsio5r7pkbu4-avhwcnkbinxufn2mjf3xa5mnly.datawarehouse.fabric.microsoft.com", "Project_LH"),
+				    dbo_Regon_dt = Source{[Schema="dbo",Item="Regon_dt"]}[Data]
+				in
+				    dbo_Regon_dt
+
+	annotation PBI_ResultType = Table
+

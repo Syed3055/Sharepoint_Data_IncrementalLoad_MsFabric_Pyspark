@@ -1,0 +1,90 @@
+table Product_dt
+	lineageTag: 3fa6f6f2-a931-45cb-bd47-d1c833e86735
+
+	column product_id
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: bd058718-5c5c-4715-aa35-37772ec24126
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_name
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 1339231b-2ab1-45d7-9976-9b72f392de3b
+		summarizeBy: none
+		sourceColumn: product_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 3c1bffe5-9881-4891-8cfa-f9337a690832
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column price
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 3241b9a0-2666-476a-a269-cb34dd484633
+		summarizeBy: sum
+		sourceColumn: price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column created_timestamp
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 7a88b1b6-f5e2-4d1c-9a0a-7f6378a71b3f
+		summarizeBy: none
+		sourceColumn: created_timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column __filepath__
+		dataType: string
+		sourceProviderType: varchar(2048)
+		lineageTag: b804f23f-92a2-4670-ad4a-ca2632c395ce
+		summarizeBy: none
+		sourceColumn: __filepath__
+
+		annotation SummarizationSetBy = Automatic
+
+	column __corrupt__
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: dd6940ec-8e1f-46ba-b845-434c637e9a2e
+		summarizeBy: none
+		sourceColumn: __corrupt__
+
+		annotation SummarizationSetBy = Automatic
+
+	column __ingestion_timestamp__
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 82ba2f81-ec25-4fa7-97fa-368dd365fce3
+		summarizeBy: none
+		sourceColumn: __ingestion_timestamp__
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Product_dt = m
+		mode: directQuery
+		source =
+				let
+				    Source = Sql.Database("s4upbqk4pime5ebsio5r7pkbu4-avhwcnkbinxufn2mjf3xa5mnly.datawarehouse.fabric.microsoft.com", "Project_LH"),
+				    dbo_Product_dt = Source{[Schema="dbo",Item="Product_dt"]}[Data]
+				in
+				    dbo_Product_dt
+
+	annotation PBI_ResultType = Table
+
